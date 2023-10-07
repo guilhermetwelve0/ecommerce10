@@ -80,7 +80,6 @@ class ChildCategoryController extends Controller
         $categories = Category::all();
         $childCategory = ChildCategory::findOrFail($id);
         $subCategories = SubCategory::where('category_id', $childCategory->category_id)->get();
-        dd($subCategories);
         return view('admin.child-category.edit', compact('categories', 'childCategory', 'subCategories'));
     }
 
@@ -121,7 +120,7 @@ class ChildCategoryController extends Controller
     }
     public function changeStatus(Request $request)
     {
-        $category = Category::findOrFail($request->id);
+        $category = ChildCategory::findOrFail($request->id);
         $category->status = $request->status == 'true' ? 1 : 0;
         $category->save();
 
