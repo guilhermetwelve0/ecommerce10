@@ -41,11 +41,11 @@ class ProductVariantItemDataTable extends DataTable
                 }
                 return $button;
             })
-            ->addColumn('is_default', function($query){
-                if($query->is_default == 1){
+            ->addColumn('is_default', function ($query) {
+                if ($query->is_default == 1) {
                     return '<i class="badge badge-success">default</i>';
-                }else{
-                return '<i class="badge badge-danger">no</i>';
+                } else {
+                    return '<i class="badge badge-danger">no</i>';
                 }
             })
             ->addColumn('variant_name', function ($query) {
@@ -60,7 +60,7 @@ class ProductVariantItemDataTable extends DataTable
      */
     public function query(ProductVariantItem $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('product_variant_id', request()->variantId)->newQuery();
     }
 
     /**
